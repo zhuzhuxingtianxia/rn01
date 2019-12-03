@@ -10,8 +10,8 @@ function onPressAction() {
 	console.log('按钮点击了')
 }
 export default function Classes() {
-	const [inputName, onChangeTextName] = React.useState('xiwen001');
-	const [inputPwd, onChangeTextPwd] = React.useState('3gynj20J003');
+	const [inputName, onChangeTextName] = React.useState('username');
+	const [inputPwd, onChangeTextPwd] = React.useState('password');
 	// const [btnText, onPressAction] = React.useState('登陆');
 	
 	return (

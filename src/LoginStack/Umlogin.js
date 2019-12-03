@@ -12,8 +12,8 @@ export default class Umlogin extends Component {
 	static navigationOptions = {
 		header:null,
 	  };
-	state = { inputName: 'xiwen001',
-			  inputPwd: '3gynj20J003' }
+	state = { inputName: 'username',
+			  inputPwd: 'password' }
 	
 	constructor(props){
 		super(props);
