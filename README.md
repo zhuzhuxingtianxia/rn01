@@ -50,6 +50,10 @@ yarn add react-native-reanimated react-native-gesture-handler react-native-scree
 yarn add react-navigation-tabs
 
 ```
+```
+yarn add react-navigation-stack
+
+```
 ###如果使用Ionicons组件
 则需添加：
 ```
