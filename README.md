@@ -87,7 +87,13 @@ yarn add react-native-vector-icons
 ```
 yarn add @react-native-community/async-storage
 ```
-关联react-native原生代码
+关联react-native原生代码0.60版本一下执行，0.60以上自动关联
 ```
 react-native link @react-native-community/async-storage
 ```
+
+## 添加Toast组件
+```
+yarn add react-native-root-toast
+```
+如果运行出错，重新执行npm install
