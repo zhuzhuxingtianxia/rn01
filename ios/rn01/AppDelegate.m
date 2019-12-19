@@ -16,9 +16,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+  
+  
+  NSDictionary *initialProps = [NSDictionary dictionaryWithObjectsAndKeys:@"应用名称", @"appName", @"v1.0.0", @"appVersion", nil];
+  
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"rn01"
-                                            initialProperties:nil];
+                                            initialProperties:initialProps];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
 

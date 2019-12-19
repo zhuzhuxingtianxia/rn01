@@ -97,3 +97,25 @@ react-native link @react-native-community/async-storage
 yarn add react-native-root-toast
 ```
 如果运行出错，重新执行npm install
+
+## 获取版本信息
+```
+yarn add react-native-device-info
+```
+或者：https://www.jianshu.com/p/16d5b48a158e
+```
+//ios
+NSDictionary *initialProps = [NSDictionary dictionaryWithObjectsAndKeys:@"应用名称", @"appName", @"v1.0.0", @"appVersion", nil];
+  
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+                                                   moduleName:@"rn01"
+                                            initialProperties:initialProps];
+```
+
+## 标装机修改连接指向
+ node_modules->react-native->third-party-podspecs->.podspec文件下spec.source的下载地址
+
+ ## 指定运行scheme
+ ```
+  "ios-scheme": "react-native run-ios --scheme 'rn01'",
+ ```
