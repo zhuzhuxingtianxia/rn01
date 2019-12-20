@@ -44,7 +44,7 @@ yarn add react-navigation
 ```
 yarn add react-native-reanimated react-native-gesture-handler react-native-screens@^1.0.0-alpha.23
 ```
-###如果使用tabbar或TopTabNavigator功能
+### 如果使用tabbar或TopTabNavigator功能
 则还需添加：
 ```
 yarn add react-navigation-tabs
@@ -96,6 +96,10 @@ react-native link @react-native-community/async-storage
 ```
 yarn add react-native-root-toast
 ```
+或使用
+```
+yarn add react-native-smart-tip
+```
 如果运行出错，重新执行npm install
 
 ## 获取版本信息
@@ -119,3 +123,29 @@ NSDictionary *initialProps = [NSDictionary dictionaryWithObjectsAndKeys:@"应用
  ```
   "ios-scheme": "react-native run-ios --scheme 'rn01'",
  ```
+
+ ## rn图表组件纯js
+
+先要安装react-native-svg
+```
+yarn add react-native-svg
+```
+若对应react-native版本号进行安装，则指定版本号
+```
+yarn add react-native-svg@9.13.4
+或
+yarn add react-native-svg@latest
+```
+然后安装victory-native
+```
+yarn add victory-native
+```
+
+## rn图表组件混合
+
+```
+yarn add react-native-charts-wrapper
+yarn add @babel/runtime
+
+```
+配置android依赖环境和iOS环境

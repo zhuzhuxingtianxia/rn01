@@ -105,6 +105,10 @@ export default class Classes extends Component {
             <Text>NODE_ENV</Text>
             <Text>{process.env.NODE_ENV}</Text>
           </View>
+          <View style={styles.cell}>
+            <Text>env自定义环境变量</Text>
+            <Text>{process.env.env}</Text>
+          </View>
         </ScrollView>
         <View style={{justifyContent:'center',alignItems:'center'}}>
           <TouchableHighlight onPress={this.onLoginOut} style={styles.button} underlayColor='#f0f0f0'>

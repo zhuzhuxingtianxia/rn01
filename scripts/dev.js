@@ -2,9 +2,9 @@ const fs = require('fs');
 
 function run() {
    var args = process.argv.slice(2)
-   args = args&&args.length>0?args:'dev';
-
-   var env =`process.env.env = '${args}'`;
+    //默认生产环境
+   var argsEnv = args&&args.length>0?args:'prd';
+   var env =`process.env.env = '${argsEnv}'`;
 
    var js = readPackageJson();
    if(js.indexOf('process.env.env = ')!= -1){

@@ -1,4 +1,4 @@
-process.env.env = 'dev'
+process.env.env = 'stg'
 
 /**
  * Sample React Native App
@@ -8,7 +8,6 @@ process.env.env = 'dev'
  * @flow
  */
 
-import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import AuthLoadingScreen from './src/LoginStack/AuthLoadingScreen';
 import Tabbar from './src/Tabbar/Tabbar';

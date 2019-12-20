@@ -5,12 +5,15 @@
     "scripts": {
         "android": "react-native run-android",
         "ios": "react-native run-ios",
-        "ios-dev": "node ./scripts/dev && react-native run-ios",
-        "ios-prd": "react-native run-ios --configuration Release",
+        "ios-dev": "node ./scripts/dev dev && react-native run-ios",
+        "ios-stg": "node ./scripts/dev stg && react-native run-ios",
+        "ios-prd": "node ./scripts/dev && react-native run-ios",
+        "ios-release": "react-native run-ios --configuration Release",
         "ios-scheme": "react-native run-ios --scheme 'rn01'",
         "start": "react-native start",
         "test": "jest",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "env": "node ./scripts/dev"
     },
     "dependencies": {
         "@react-native-community/async-storage": "^1.6.3",
@@ -18,7 +21,9 @@
         "react-native": "0.61.4",
         "react-native-device-info": "^5.4.0",
         "react-native-gesture-handler": "^1.5.1",
+        "react-native-linear-gradient": "^2.5.6",
         "react-native-reanimated": "^1.4.0",
+        "react-native-root-siblings": "^4.0.6",
         "react-native-root-toast": "^3.2.0",
         "react-native-screens": "^1.0.0-alpha.23",
         "react-native-vector-icons": "^6.6.0",

@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { StyleSheet,
-				 Text,
-				 View, 
-				 ImageBackground, 
-				 Image, 
-				 TextInput,
-				 TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, View,  ImageBackground,
+	 Image, TextInput, TouchableHighlight} from 'react-native';
+import Toast from 'react-native-root-toast';
 
 export default class Umlogin extends Component {
 	static navigationOptions = {
@@ -33,10 +29,26 @@ export default class Umlogin extends Component {
 			inputPwd:text
 		});
 	}
-	onPressAction= async () =>{
+	
+	onPressAction= () =>{
 		console.log('按钮点击')
-		await AsyncStorage.setItem('userToken', 'abc');
-    	this.props.navigation.navigate('Tabbar');
+
+		Toast.show('登陆成功', {
+			duration: Toast.durations.SHORT,
+			position: Toast.positions.CENTER,
+			shadow: false,
+			animation: true,
+			hideOnPress: true,
+			delay: 0,
+			onShown: () => {
+				AsyncStorage.setItem('userToken', 'abc');
+    			this.props.navigation.navigate('Tabbar');
+			},
+			onHide: () => {
+
+			},
+		});
+		
 	}
 
   render() {
