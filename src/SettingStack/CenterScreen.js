@@ -15,6 +15,28 @@ export default class Classes extends Component {
   componentDidMount(){
 
   }
+  _onPress(tag) {
+    var routeName = 'AboutScreen'
+    switch (tag) {
+      case 1:
+        routeName = 'AboutScreen'
+        break;
+      case 2:
+        routeName = 'AboutScreen'
+        break;
+      case 3:
+        routeName = 'AboutScreen'
+        break;
+      case 4:
+        routeName = 'AboutScreen'
+        break;
+    
+      default:
+        break;
+    }
+    this.props.navigation.navigate(routeName)
+
+  };
   _onScroll=(event)=> {
     const contentOffsetY = event.nativeEvent.contentOffset.y;
     console.log(contentOffsetY);
@@ -28,28 +50,28 @@ export default class Classes extends Component {
                   onScroll={this._onScroll}>
         <Animated.Image style={styles.headerImg} source={require('../imgs/bgimg.png')}/>
         <View style={styles.content}>
-          <TouchableOpacity activeOpacity={0.7}>
+          <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onPress(1)}>
             <View style={styles.item}>
               <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#3f54da', '#778efd']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
-                <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>建设界面</Text>
+                <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>About界面</Text>
               </LinearGradient>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.5}>
+          <TouchableOpacity activeOpacity={0.5} onPress={()=>this._onPress(2)}>
             <View style={styles.item}>
               <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#30c08f', '#69fa8e']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
                 <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>租赁界面</Text>
               </LinearGradient>
             </View>
           </TouchableOpacity>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={()=>this._onPress(3)}>
             <View style={styles.item}>
               <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#eb5400', '#fcbb47']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
                 <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>投资界面</Text>
               </LinearGradient>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight underlayColor='#f0f0f0'>
+          <TouchableHighlight underlayColor='#f0f0f0' onPress={()=>this._onPress(4)}>
             <View style={styles.item}>
               <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#fcb92f', '#fddd57']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
                 <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>物业界面</Text>

@@ -13,8 +13,11 @@ import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../HomeStack/HomeScreen';
 import DetailsScreen from '../HomeStack/DetailsScreen';
 import DetailsInfoScreen from '../HomeStack/DetailsInfoScreen';
+import SettingScreen from '../SettingStack/SettingScreen';
 
-const Components = {HomeScreen,DetailsScreen,DetailsInfoScreen}
+const Components = {HomeScreen,DetailsScreen,
+                    DetailsInfoScreen,SettingScreen}
+
 const HomeStack = createStackNavigator({
     ...Components,
 },

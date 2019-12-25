@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {name as rnName,version as rnVersion} from '../../package.json';
 import AsyncStorage from '@react-native-community/async-storage';
 import RNDeviceInfo from 'react-native-device-info';
+import LinearGradient from 'react-native-linear-gradient';
 import { StyleSheet, Platform, DeviceInfo, Dimensions,NativeModules, 
         ScrollView, Text, View, Image, TouchableHighlight } from 'react-native';
 
@@ -41,7 +42,7 @@ export default class Classes extends Component {
       <View style={styles.root}>
         <ScrollView style={styles.root}>
           <View style={styles.header}>
-            <Image style={{width:80,height:80,borderRadius:5,backgroundColor:'#999'}}/>
+            <Image style={{width:80,height:80,borderRadius:5,backgroundColor:'#f4511e'}}/>
             <Text style={{padding:5}}>appName:{RNDeviceInfo.getApplicationName()} v{RNDeviceInfo.getVersion()}</Text>
             <Text>rnName:{rnName} v{rnVersion}</Text>
           </View>
@@ -112,7 +113,9 @@ export default class Classes extends Component {
         </ScrollView>
         <View style={{justifyContent:'center',alignItems:'center'}}>
           <TouchableHighlight onPress={this.onLoginOut} style={styles.button} underlayColor='#f0f0f0'>
+            <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#eb5400','#fcbb47']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
               <Text style={styles.buttonText}>退出登陆</Text>
+            </LinearGradient>
           </TouchableHighlight>
         </View>
       </View>
@@ -142,19 +145,15 @@ const styles = StyleSheet.create({
   },
   button: {
 		width:'80%',
-		height:40,
+		height:50,
 		marginTop:20,
 		marginBottom:30,
-		borderRadius:20,
-		borderWidth:1,
-		borderColor:'#eb5400',
-		flexDirection:'row',
-		justifyContent:"center",
-		alignItems:"center"
+		borderRadius:25,
+		overflow:'hidden'
 	},
 	buttonText: {
 		fontSize:14,
 		fontWeight:'bold',
-		color:'#eb5400',
+		color:'#fff',
 	}
 });

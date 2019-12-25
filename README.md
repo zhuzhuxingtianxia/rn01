@@ -140,6 +140,7 @@ yarn add react-native-svg@latest
 ```
 yarn add victory-native
 ```
+**注意**：victory-native和react-native-svg及react-native要相匹配
 
 ## rn图表组件混合
 

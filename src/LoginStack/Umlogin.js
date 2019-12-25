@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { StyleSheet, Text, View,  ImageBackground,
 	 Image, TextInput, TouchableHighlight} from 'react-native';
+import EncryptCode from './EncryptCode'
 import Toast from 'react-native-root-toast';
+import LoaddingIndicator from '../components/LoaddingIndicator'
+import { fetchPost } from '../utils/Request'
 
 export default class Umlogin extends Component {
 	static navigationOptions = {
@@ -29,25 +32,61 @@ export default class Umlogin extends Component {
 			inputPwd:text
 		});
 	}
-	
-	onPressAction= () =>{
+	onPressAction= async () =>{
 		console.log('按钮点击')
+		LoaddingIndicator.show(true, "登录中...");
+		const pwd = EncryptCode.encrypt(this.state.inputPwd)
+		var body = {username:this.state.inputName,
+					password:pwd,
+			}
+		const url = 'http://xxx/api/login'
+		let response = await fetchPost(url,body);
+		LoaddingIndicator.hide();
+		let responseJson = await response.json();
+		console.log('pptoken:',responseJson.object.token)
+		if(responseJson.object && responseJson.object.token){
+			await AsyncStorage.setItem('userToken', responseJson.object.token);
+			Toast.show('登录成功',{
+				position: Toast.positions.CENTER,// toast位置
+				duration: 1000,// toast显示时长
+				onHide: () => {
+					// toast隐藏回调（动画结束时）
+					this.props.navigation.navigate('Tabbar');
+				}
+			})
+			
+		}else{
+			alert(JSON.stringify(responseJson))
+		}
+	}
+	_onPress= () =>{
+		var message = null;
+		if(this.state.inputName.length == 0){
+			message = '请输入用户名'
+		}else if(this.state.inputPwd.length == 0){
+			message = '请输入密码'
+		}
 
-		Toast.show('登陆成功', {
-			duration: Toast.durations.SHORT,
-			position: Toast.positions.CENTER,
-			shadow: false,
-			animation: true,
-			hideOnPress: true,
-			delay: 0,
-			onShown: () => {
-				AsyncStorage.setItem('userToken', 'abc');
-    			this.props.navigation.navigate('Tabbar');
-			},
-			onHide: () => {
-
-			},
-		});
+		if(message) {
+			Toast.show(message,{duration:1000,position: Toast.positions.CENTER})
+			return;
+		}
+		LoaddingIndicator.show(true, "登录中...");
+		setTimeout(()=>{
+			LoaddingIndicator.hide();
+		    AsyncStorage.setItem('userToken', 'abc');
+			Toast.show('登陆成功', {
+				position: Toast.positions.CENTER,
+				duration: 1000,
+				hideOnPress: true,
+				onShown: () => {
+					this.props.navigation.navigate('Tabbar');
+				},
+				onHide: () => {
+	
+				},
+			});
+		},1000)
 		
 	}
 
@@ -70,7 +109,7 @@ export default class Umlogin extends Component {
 											secureTextEntry={true}
 											onChangeText={text => this.onChangeTextPwd(text)}></TextInput>
 					</View>
-					<TouchableHighlight onPress={this.onPressAction} style={styles.button} underlayColor='#f0f0f0'>
+					<TouchableHighlight onPress={this._onPress} style={styles.button} underlayColor='#f0f0f0'>
 						<Text style={styles.buttonText}>登陆</Text>
 					</TouchableHighlight>
 				</View>

@@ -11,12 +11,14 @@ import CenterScreen from '../SettingStack/CenterScreen';
 import SettingScreen from '../SettingStack/SettingScreen';
 import AboutScreen from '../SettingStack/AboutScreen';
 
+const Screens = {AboutScreen}
+
 const SettingStack = createStackNavigator({
   Center: {
     screen: CenterScreen,
   },
   Setting: SettingScreen,
-  About: AboutScreen,
+  ...Screens
 },
 {
   initialRouteName: 'Center',
