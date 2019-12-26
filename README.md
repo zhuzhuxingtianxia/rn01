@@ -151,3 +151,7 @@ yarn add @babel/runtime
 
 ```
 配置android依赖环境和iOS环境
+
+## Animated动画
+
+参考文章：https://www.jianshu.com/p/7fd37d8ed138

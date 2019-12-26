@@ -34,7 +34,11 @@ export default class Classes extends Component {
       default:
         break;
     }
-    this.props.navigation.navigate(routeName)
+    this.props.navigation.navigate(routeName,{
+      callback:(param)=> {
+        alert('选中了：'+JSON.stringify(param))
+      }
+    })
 
   };
   _onScroll=(event)=> {

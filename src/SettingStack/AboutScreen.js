@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet,FlatList, TouchableOpacity,Image, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Popup,{PopupView} from '../components/Popup'
 
 export default class Classes extends Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
@@ -57,7 +58,7 @@ export default class Classes extends Component {
             selectItems:selectItems,
           })
         }else{
-          alert('xx')
+          Popup.show();
         }
       }}>
         {number>0?<Text style={{fontSize:15,color:'#fff'}}>全选</Text>
@@ -115,7 +116,10 @@ export default class Classes extends Component {
                   renderItem={this._renderItem}></FlatList>
         {this.state.selectItems.length>0?
           <View style={{margin:20,alignItems:'center'}}>
-            <TouchableOpacity style={styles.bottomBtn}>
+            <TouchableOpacity style={styles.bottomBtn} onPress={()=>{
+              this.props.navigation.state.params.callback(this.state.selectItems);
+              this.props.navigation.goBack();
+            }}>
               <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#eb5400', '#fcbb47']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
                 <Text style={{fontSize:18,color:'#fff'}}>确定</Text>
               </LinearGradient>
