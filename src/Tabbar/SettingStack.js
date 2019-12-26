@@ -10,8 +10,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import CenterScreen from '../SettingStack/CenterScreen';
 import SettingScreen from '../SettingStack/SettingScreen';
 import AboutScreen from '../SettingStack/AboutScreen';
+import AnimatedScreen from '../SettingStack/AnimatedScreen';
 
-const Screens = {AboutScreen}
+const Screens = {AboutScreen,AnimatedScreen}
 
 const SettingStack = createStackNavigator({
   Center: {

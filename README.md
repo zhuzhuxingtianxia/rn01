@@ -101,7 +101,8 @@ yarn add react-native-root-toast
 yarn add react-native-smart-tip
 ```
 如果运行出错，重新执行npm install
-
+*注意：* react-native-root-toast 依赖 react-native-root-siblings
+        故无需在package.json文件重复引入，否则toast将不显示
 ## 获取版本信息
 ```
 yarn add react-native-device-info

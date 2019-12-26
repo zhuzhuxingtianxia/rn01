@@ -68,13 +68,13 @@ export default class Umlogin extends Component {
 		}
 
 		if(message) {
-			Toast.show(message,{duration:1000,position: Toast.positions.CENTER})
-			return;
+		Toast.show(message,{duration:1000,position: Toast.positions.CENTER})
+		 return;
 		}
 		LoaddingIndicator.show(true, "登录中...");
 		setTimeout(()=>{
 			LoaddingIndicator.hide();
-		    AsyncStorage.setItem('userToken', 'abc');
+			// AsyncStorage.setItem('userToken', 'abc');
 			Toast.show('登陆成功', {
 				position: Toast.positions.CENTER,
 				duration: 1000,

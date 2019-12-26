@@ -33,7 +33,7 @@ import { withNavigation } from 'react-navigation';
                 defaultSource={require('../imgs/bifenxi.png')}
           />
           <View style={styles.rightContainer}>
-            <Text style={styles.title}>{item.title}</Text>
+            <Text style={[styles.title,item.browse?{color:'#3f54da'}:{}]}>{item.title}</Text>
             <Text style={styles.year}>{item.year}</Text>
           </View>
         </View>

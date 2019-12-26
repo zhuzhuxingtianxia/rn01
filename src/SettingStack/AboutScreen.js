@@ -1,14 +1,69 @@
 import React, { Component } from 'react';
-import { StyleSheet,FlatList, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet,FlatList, TouchableOpacity,Image, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class Classes extends Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
     const { params } = navigation.state;
     console.log(JSON.stringify(params))
+    const number = navigation.getParam('number')
+    const headerLeft = number>0?{headerLeft:navigation.getParam('headerLeft')}:null;
     return {
-      title: navigation.getParam('title', 'List'),
+      title: navigation.getParam('title', '商品列表'),
+      headerTitle:navigation.getParam('headerTitle'),
+      headerRight:navigation.getParam('headerRight'),
+      ...headerLeft
     };
+    
+  };
+  _headerTitle=()=> {
+    const number = this.props.navigation.getParam('number')
+    return (
+      <View>
+        <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>
+         {number>0?`选中${number}个`:'商品列表'}
+        </Text>
+      </View>
+    )
+  }
+  _headerLeft=()=> {
+    return (
+      <TouchableOpacity style={{marginLeft:15}} onPress={()=>{
+        var noneSelectItems = this.state.datas.map((item)=>{
+          item.select = false
+          return item;
+        })
+        this.props.navigation.setParams({ number: 0 });
+        this.setState({
+          selectItems:[],
+          datas:noneSelectItems
+        })
+      }}>
+        <Text style={{fontSize:15,color:'#fff'}}>取消</Text>
+      </TouchableOpacity>
+    )
+    
+  }
+  _headerRight=()=> {
+    const number = this.props.navigation.getParam('number')
+    return (
+      <TouchableOpacity style={{marginRight:15}} onPress={()=>{
+        if(number>0){
+          var selectItems = this.state.datas.map((item)=>{
+            item.select = true
+          })
+          this.props.navigation.setParams({ number: selectItems.length });
+          this.setState({
+            selectItems:selectItems,
+          })
+        }else{
+          alert('xx')
+        }
+      }}>
+        {number>0?<Text style={{fontSize:15,color:'#fff'}}>全选</Text>
+          :<Image source={require('../imgs/tabbar/property.png')} style={{tintColor:'#fff',width:30,height:30}}/>}
+      </TouchableOpacity>
+    )
   };
   constructor(props){
     super(props);
@@ -23,7 +78,10 @@ export default class Classes extends Component {
     }
   }
   componentDidMount(){
-      
+    this.props.navigation.setParams({ headerTitle: this._headerTitle });
+    this.props.navigation.setParams({ headerLeft: this._headerLeft });
+    this.props.navigation.setParams({ headerRight: this._headerRight });
+    this.props.navigation.setParams({ number: this.state.selectItems.length });
   }
   _onPressItem=(index)=> {
     var item = this.state.datas[index]
@@ -38,6 +96,7 @@ export default class Classes extends Component {
           return item
         }
     })
+    this.props.navigation.setParams({ number: selectItems.length });
     this.setState({
       selectItems:selectItems,
     })
@@ -57,7 +116,7 @@ export default class Classes extends Component {
         {this.state.selectItems.length>0?
           <View style={{margin:20,alignItems:'center'}}>
             <TouchableOpacity style={styles.bottomBtn}>
-              <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#3f54da', '#778efd']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
+              <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#eb5400', '#fcbb47']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
                 <Text style={{fontSize:18,color:'#fff'}}>确定</Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -121,7 +180,7 @@ const styles = StyleSheet.create({
   },
   bottomBtn: {
     height:50,
-    width:'80%',
+    width:'90%',
     borderRadius:25,
     overflow:'hidden',
     justifyContent:'center'

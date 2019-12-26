@@ -22,7 +22,7 @@ export default class Classes extends Component {
         routeName = 'AboutScreen'
         break;
       case 2:
-        routeName = 'AboutScreen'
+        routeName = 'AnimatedScreen'
         break;
       case 3:
         routeName = 'AboutScreen'
@@ -60,7 +60,7 @@ export default class Classes extends Component {
           <TouchableOpacity activeOpacity={0.5} onPress={()=>this._onPress(2)}>
             <View style={styles.item}>
               <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#30c08f', '#69fa8e']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
-                <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>租赁界面</Text>
+                <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>Animated界面</Text>
               </LinearGradient>
             </View>
           </TouchableOpacity>
