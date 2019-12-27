@@ -11,8 +11,9 @@ import CenterScreen from '../SettingStack/CenterScreen';
 import SettingScreen from '../SettingStack/SettingScreen';
 import AboutScreen from '../SettingStack/AboutScreen';
 import AnimatedScreen from '../SettingStack/AnimatedScreen';
+import ModalExample from '../SettingStack/ModalExample';
 
-const Screens = {AboutScreen,AnimatedScreen}
+const Screens = {AboutScreen,AnimatedScreen,ModalExample}
 
 const SettingStack = createStackNavigator({
   Center: {

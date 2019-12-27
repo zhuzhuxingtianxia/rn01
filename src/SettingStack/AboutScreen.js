@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet,FlatList, TouchableOpacity,Image, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Popup,{PopupView} from '../components/Popup'
+import PopContent from './PopContent'
 
 export default class Classes extends Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
@@ -58,7 +59,10 @@ export default class Classes extends Component {
             selectItems:selectItems,
           })
         }else{
-          Popup.show();
+          //第一种
+          // Popup.show({position:'right',width:300,renderContent:<PopContent/>});
+          //第二种
+          Popup.show({position:'right',width:300},renderContent=<PopContent/>);
         }
       }}>
         {number>0?<Text style={{fontSize:15,color:'#fff'}}>全选</Text>
@@ -69,6 +73,7 @@ export default class Classes extends Component {
   constructor(props){
     super(props);
     this.state = {
+      modalVisible: false,
       selectItems:[],
       datas:[{name:'商品分类1',classId:'001'},
              {name:'商品分类2',classId:'002'},
@@ -126,6 +131,41 @@ export default class Classes extends Component {
             </TouchableOpacity>
           </View>
           :null}
+          <View style={{height:40,flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+            <TouchableOpacity onPress={()=>{
+              Popup.show({position:'left',width:300,renderContent:<PopContent/>});
+            }}>
+              <Text style={{backgroundColor:'blue',color:'#fff',padding:10}}>Left</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {
+              Popup.show({position:'bottom',style:{flex:1},renderContent:<PopContent/>});
+            }}>
+              <Text style={{backgroundColor:'blue',color:'#fff',padding:10}}>Bottom</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>{
+              Popup.show({position:'right',renderContent:<PopContent/>});
+            }}>
+              <Text style={{backgroundColor:'blue',color:'#fff',padding:10}}>Right</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>{
+              this.setState({
+                modalVisible:true
+              })
+            }}>
+              <Text style={{backgroundColor:'blue',color:'#fff',padding:10}}>Modal</Text>
+            </TouchableOpacity>
+          </View>
+          <PopupView show={this.state.modalVisible} 
+                      position={'bottom'}
+                      height={300} 
+                      onHide={()=>{
+                        this.setState({modalVisible:false})
+                      }}
+                     >
+              <View style={{flex:1,justifyContent:'center',alignItems:"center"}}>
+                <Text>Modal</Text>
+              </View>
+          </PopupView>
       </View>
     );
   }

@@ -25,7 +25,7 @@ export default class Classes extends Component {
         routeName = 'AnimatedScreen'
         break;
       case 3:
-        routeName = 'AboutScreen'
+        routeName = 'ModalExample'
         break;
       case 4:
         routeName = 'AboutScreen'
@@ -71,7 +71,7 @@ export default class Classes extends Component {
           <TouchableHighlight onPress={()=>this._onPress(3)}>
             <View style={styles.item}>
               <LinearGradient style={{flex:1,justifyContent:'center',alignItems:'center'}} colors={['#eb5400', '#fcbb47']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
-                <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>投资界面</Text>
+                <Text style={{fontSize:18,color:'#fff',fontWeight:'bold'}}>ModalExample界面</Text>
               </LinearGradient>
             </View>
           </TouchableHighlight>
