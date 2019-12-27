@@ -11,7 +11,6 @@ renderContent:填充内容组件
 */
 
 var siblingArray = [];
-var siblings = null;
 export default class Popup extends Component {
 	//position:right/bottom/left
 		static position = 'right';
@@ -30,21 +29,25 @@ export default class Popup extends Component {
                 return true;
             });
         }
-        siblings = new RootSiblings(<PopupView {...options} visible={true}>
+       let siblings = new RootSiblings(<PopupView {...options} visible={true}>
 																				{renderContent}
 																		</PopupView>)
+				siblingArray.push(siblings);
 
         return siblings;
     }
     static hide() {
-        if (siblings != null && siblings instanceof RootSiblings){
-            if(Platform.OS != 'ios') {
-                this.backHandler.remove();
-            }
+			let siblings = siblingArray.pop()
+			if (siblings != null && siblings instanceof RootSiblings){
+					if(Platform.OS != 'ios') {
+							this.backHandler.remove();
+					}
 
-            siblings.destroy();
-						siblings = null;
-				}
+					siblings.destroy(()=>{
+						console.log('siblings.destroy')
+					});
+					siblings = null;
+			}
     }
     static update(options) {
 			if(options && !options.position){
@@ -54,8 +57,9 @@ export default class Popup extends Component {
 			}
 
 			options.siblings = true
+			let lastId = siblingArray.length - 1;
 
-      siblings.update(<PopupView {...options} visible={true}/>)
+			lastId>=0&& siblingArray[lastId].update(<PopupView {...options} visible={true}/>)
     }
 }
 /*
