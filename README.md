@@ -22,6 +22,9 @@ react-native init MyApp --version 0.44.3
 ```
 ## 编译并运行
 ```
+npm install
+```
+```
 react-native run-ios
 
 ```
