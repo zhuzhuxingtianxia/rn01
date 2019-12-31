@@ -36,8 +36,8 @@ class DraggableView extends React.Component {
   export default () => {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <DraggableView style={{width: 250, height: 50, backgroundColor: 'red'}}>
-          <Text style={{fontSize: 28, textAlign: 'center', margin: 10}}>DraggableView</Text>
+        <DraggableView style={{width: 160, height: 160, backgroundColor: 'red',justifyContent:'center',borderRadius:80,}}>
+          <Text style={{fontSize: 28,color:'#fff', textAlign: 'center', margin: 10}}>DraggableView</Text>
         </DraggableView>
       </View>
     )

@@ -19,6 +19,12 @@ const FadeInView = (props) => {
       style={{
         ...props.style,
         opacity: fadeAnim,         // 将透明度绑定到动画变量值
+        transform: [{
+          translateY: fadeAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [150, 0]  // 0 : 150, 0.5 : 75, 1 : 0
+          }),
+        }],
       }}
     >
       {props.children}
