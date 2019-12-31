@@ -10,10 +10,24 @@ import { createStackNavigator } from 'react-navigation-stack';
 import CenterScreen from '../SettingStack/CenterScreen';
 import SettingScreen from '../SettingStack/SettingScreen';
 import AboutScreen from '../SettingStack/AboutScreen';
-import AnimatedScreen from '../SettingStack/AnimatedScreen';
 import ModalExample from '../SettingStack/ModalExample';
+//动画系列
+import AnimatedScreen from '../AnimatedDemo/AnimatedScreen';
+import FadeInView from '../AnimatedDemo/FadeInView';
+import MoveBackView from '../AnimatedDemo/MoveBackView';
+import DraggableView from '../AnimatedDemo/DraggableView';
+import PanResponderDemo from '../AnimatedDemo/PanResponderDemo';
+import LayoutAnimationView from '../AnimatedDemo/LayoutAnimationView';
+import PullDownScale from '../AnimatedDemo/PullDownScale';
+import ScaleView from '../AnimatedDemo/ScaleView';
+import TransformView from '../AnimatedDemo/TransformView';
 
-const Screens = {AboutScreen,AnimatedScreen,ModalExample}
+const Screens = {AboutScreen,ModalExample,
+                 AnimatedScreen,FadeInView,
+                 MoveBackView,DraggableView,
+                 PanResponderDemo,LayoutAnimationView,
+                 PullDownScale,ScaleView,
+                 TransformView}
 
 const SettingStack = createStackNavigator({
   Center: {

@@ -123,7 +123,7 @@ export default class HomeScreen extends React.Component {
       }
       this.setState({
         emtyText:msg,
-        datas:this.state.datas.length>1?datas:[],
+        datas:this.state.datas.length>1?this.state.datas:[],
       })
       console.log('err:',error)
     }

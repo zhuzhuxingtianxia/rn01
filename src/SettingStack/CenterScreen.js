@@ -11,6 +11,9 @@ export default class Classes extends Component {
   };
   constructor(props){
     super(props);
+    this.state = {
+      offsetY:0,
+    }
   }
   componentDidMount(){
 
@@ -44,15 +47,26 @@ export default class Classes extends Component {
   _onScroll=(event)=> {
     const contentOffsetY = event.nativeEvent.contentOffset.y;
     console.log(contentOffsetY);
-    //下拉放大效果：https://www.jianshu.com/p/1c960ad75020
+    if(contentOffsetY<0){
+      this.setState({
+        offsetY:contentOffsetY,
+      })
+    }else {
+      this.setState({
+        offsetY:0,
+      })
+    }
+    //下拉放大效果：https://www.jianshu.com/p/0e2785b0cde1
   }
   render() {
+    const {offsetY} = this.state
     return (
       <ScrollView style={styles.root} 
                   contentContainerStyle={styles.contentContainer} 
-                  scrollEventThrottle={100}
+                  scrollEventThrottle={10}
                   onScroll={this._onScroll}>
-        <Animated.Image style={styles.headerImg} source={require('../imgs/bgimg.png')}/>
+        <Animated.Image style={[styles.headerImg,{transform: [{scale:1+Math.abs(offsetY)/300},{translateY:offsetY/2}]}]} 
+                source={require('../imgs/bgimg.png')}/>
         <View style={styles.content}>
           <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onPress(1)}>
             <View style={styles.item}>
@@ -102,10 +116,11 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingVertical: 0,
     flex:1,
+    alignItems:'center'
   },
   headerImg: {
     height:300,
-    resizeMode:'stretch',
+    width:Dimensions.get('window').width,
   },
   content: {
     flex:1,

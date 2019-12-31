@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Modal, Text, TouchableHighlight, View } from "react-native";
+import { StyleSheet, Modal,Animated, Text, TouchableHighlight, View } from "react-native";
 import AlertRoot from '../components/AlertRoot';
 
 class ModalExample extends Component {
@@ -61,7 +61,29 @@ class ModalExample extends Component {
 }
 
 class AlertContent extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+        springValue: new Animated.Value(1),
+    };
+
+    this.springAnimated = Animated.spring(
+        this.state.springValue,
+        {
+            toValue: 1,
+            friction: 8,    //弹跳系数
+            tension: 100,   // 控制速度
+        }
+    );
+  }
+  componentDidMount(){
+    this._startAnimated();
+  }
+  _startAnimated() {
+    this.state.springValue.setValue(0.5);
+    this.springAnimated.start();
+  }
     _onPress=()=> {
       if(this.props.onClick){
         this.props.onClick()
@@ -70,7 +92,9 @@ class AlertContent extends Component {
     render(){
       return (
         <View style={styles.bgContainer}>
-          <View style={styles.content}>
+          <Animated.View style={[styles.content,
+                                  {transform:[{scale:this.state.springValue}]}
+                                ]}>
             <View style={{justifyContent:'center',alignItems:'center'}}>
               <Text style={{padding:10}}>Hello World!</Text>
             </View>
@@ -79,13 +103,35 @@ class AlertContent extends Component {
             >
               <Text style={{color:'#fff'}}>Hide Modal</Text>
             </TouchableHighlight>
-          </View>
+          </Animated.View>
         </View>
       )
     }
 }
 class AlertRootContent extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+        springValue: new Animated.Value(1),
+    };
+
+    this.springAnimated = Animated.spring(
+        this.state.springValue,
+        {
+            toValue: 1,
+            friction: 5,    //弹跳系数
+            tension: 100,   // 控制速度
+        }
+    );
+  }
+  componentDidMount(){
+    this._startAnimated();
+  }
+  _startAnimated() {
+    this.state.springValue.setValue(0.5);
+    this.springAnimated.start();
+  }
   _onPress=()=> {
     if(this.props.onClick){
       this.props.onClick()
@@ -93,7 +139,9 @@ class AlertRootContent extends Component {
   }
   render(){
     return (
-      <View style={styles.content}>
+      <Animated.View style={[styles.content,
+                              {transform:[{scale:this.state.springValue}]}
+                            ]}>
         <View style={{justifyContent:'center',alignItems:'center'}}>
           <Text style={{padding:10}}>Hello World!</Text>
         </View>
@@ -102,7 +150,7 @@ class AlertRootContent extends Component {
         >
           <Text style={{color:'#fff'}}>Hide Modal</Text>
         </TouchableHighlight>
-      </View>
+      </Animated.View>
     )
   }
 }
