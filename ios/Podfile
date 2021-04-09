@@ -41,9 +41,11 @@ target 'rn01' do
 
    
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'rn01Tests' do
     inherit! :search_paths
-    # Pods for testing
+    # Pods for testingSonar
   end
 
   use_native_modules!
